@@ -1,0 +1,1554 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: 3dcd5bbe90534f9e8eb5c2d53756af63
+      name: Templates/Power
+  templates:
+    - uuid: 5160f960e022427d9074429142115c14
+      template: 'Zaryad Sfera'
+      name: 'Zaryad Sfera'
+      description: |
+        Template for:
+         Zaryad Sfera M33-600
+        and possibly for any Zaryad devices
+        
+        MIBs:
+         UPS-MIB
+         INMATICS-MIB
+      templates:
+        - name: 'Generic SNMP'
+      groups:
+        - name: Templates/Power
+      items:
+        - uuid: 6998a924cf4b4adb9933cf472265d50e
+          name: 'Alarm: Bad Bypass'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.10.0
+          key: generalRfc1628AlarmBypassBad
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Bypass
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: 354e5e62ce694546bec133ead9c28a78
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmBypassBad)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmBypassBad)=0'
+              name: 'Alarm: Bad Bypass'
+              priority: AVERAGE
+              manual_close: 'YES'
+        - uuid: 31850dc5eeac48279a37174ad8021adc
+          name: 'Alarm: General Fault'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.18.0
+          key: generalRfc1628AlarmGeneralFault
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: cc2bd1bffe584ce2b111aa614c532b83
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmGeneralFault)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmGeneralFault)=0'
+              name: 'Alarm: General Fault'
+              priority: AVERAGE
+              manual_close: 'YES'
+        - uuid: 9e2f7d32a8fd45fe9ce99475dc375acf
+          name: 'Alarm: Bad Input'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.6.0
+          key: generalRfc1628AlarmInputBad
+          history: 30d
+          trends: '0'
+          description: 'Сбой на входе'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Input
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: a78522e3656345f29638cf3005368a90
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmInputBad)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmInputBad)=0'
+              name: 'Alarm: Bad Input'
+              priority: AVERAGE
+              manual_close: 'YES'
+        - uuid: 755c64c6e5a84661939e91ffe6b2eb34
+          name: 'Alarm: Low Battery'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.3.0
+          key: generalRfc1628AlarmLowBattery
+          history: 30d
+          trends: '0'
+          description: 'Низкий заряд батареи'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Battery
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: 5407e90061874c19913d1b48f3dffaa0
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmLowBattery)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmLowBattery)=0'
+              name: 'Alarm: Low Battery'
+              status: DISABLED
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: bfef6921b59a4210ab6cd389d514c0fc
+          name: 'Alarm: On Battery'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.2.0
+          key: generalRfc1628AlarmOnBattery
+          history: 30d
+          trends: '0'
+          description: 'ИБП перешёл на АКБ'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Battery
+            - tag: Application
+              value: Status
+        - uuid: daa6d199727c4811bc94a38437f5a11a
+          name: 'Alarm: On Bypass'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.9.0
+          key: generalRfc1628AlarmOnBypass
+          history: 30d
+          trends: '0'
+          description: 'Перешёл на байпасс'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Bypass
+            - tag: Application
+              value: Status
+        - uuid: 52aea2ce2aad4aac81151e73bb007357
+          name: 'Alarm: Output Overload'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.8.0
+          key: generalRfc1628AlarmOutputOverload
+          history: 30d
+          trends: '0'
+          description: Перегрузка
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Output
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: c7cfeb48d5464a1782b9f8fdbd1d2970
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmOutputOverload)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmOutputOverload)=0'
+              name: 'Alarm: Output overload'
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: 86e2871034d24cc78115239a1ed9dded
+          name: 'Alarm: Bad Temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.5.0
+          key: generalRfc1628AlarmTempBad
+          history: 30d
+          trends: '0'
+          description: 'Нарушение температурного режима'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Status
+            - tag: Application
+              value: Temperature
+          triggers:
+            - uuid: 1c7064c29880463ca4dfaab18a06f650
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmTempBad)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmTempBad)=0'
+              name: 'Alarm: Bad Temperature'
+              priority: AVERAGE
+              manual_close: 'YES'
+        - uuid: e59078c08efd45fc97958d445dd34a73
+          name: 'Alarm: Output Off'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.1.1.1.14.0
+          key: generalRfc1628AlarmUpsOutputOff
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Output
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: 73865434403f441a95f50e86ac23ef0c
+              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmUpsOutputOff)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmUpsOutputOff)=0'
+              name: 'Alarm: Output is off'
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: deaf2c1b867848deba8bed3a42d495d1
+          name: 'BMS Charge Status'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.1.12.0
+          key: pulseChargeProcessState
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'INMATICS-MIB::pulseChargeProcessState'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: BMS
+            - tag: Application
+              value: Status
+        - uuid: 82f53a87b90145c1bb6f917bcbe1217a
+          name: 'BMS Status'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.1.15.0
+          key: pulseCommonState
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'INMATICS-MIB::pulseCommonState'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: BMS
+            - tag: Application
+              value: Status
+        - uuid: a8ee66b434014f08bb581fe89ff5edd6
+          name: 'BMS Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.1.9.0
+          key: pulseCurrent
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          description: 'Сила тока контроллера батарей СМБ Пульс'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: BMS
+        - uuid: 51ff5c77ca434b2abdd35937e6064958
+          name: 'BMS SOC'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.1.13.0
+          key: pulseSoc
+          delay: 2m
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: '%'
+          description: 'State of Charge в процентах'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: BMS
+        - uuid: f1b9f7e08a8a46b4b4bad80f4902cfb5
+          name: 'BMS String Current Disbalance'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.2.2.0
+          key: pulseStringCurrentDisbalance
+          history: 30d
+          trends: '0'
+          description: 'Большая разница токов линий АКБ'
+          valuemap:
+            name: 'INMATICS-MIB::pulseStringCurrentDisbalance'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: BMS
+            - tag: Application
+              value: Status
+        - uuid: 1955a2fc6e5740ad98f80d340a1d8bbe
+          name: 'BMS String Voltage Disbalance'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.2.1.0
+          key: pulseStringVoltageDisbalance
+          history: 30d
+          trends: '0'
+          description: 'Дисбаланс напряжений линий АКБ'
+          valuemap:
+            name: 'INMATICS-MIB::pulseStringVoltageDisbalance'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: BMS
+            - tag: Application
+              value: Status
+        - uuid: 4995becbc9c84d448efd3217fa02d55c
+          name: 'BMS Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.5.2.1.1.6.0
+          key: pulseVoltage
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: V
+          description: 'Напряжение контроллера батарей СМБ Пульс'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: BMS
+        - uuid: 0b987f06976b43c9ae6762ca4f1efbe5
+          name: 'Alarm: High Humidity'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.2.5.0
+          key: upsAlarmEnvSensorHumidityHigh
+          history: 30d
+          trends: '0'
+          description: 'Высокая влажность'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: fc33932d512b4f8694e165bed8f3139c
+              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorHumidityHigh)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorHumidityHigh)=0'
+              name: 'Alarm: High Humidity'
+              priority: AVERAGE
+              manual_close: 'YES'
+        - uuid: 4a276783d194490f8c2bcf21e68b32a9
+          name: 'Alarm: High Temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.2.3.0
+          key: upsAlarmEnvSensorTemperatureHigh
+          history: 30d
+          trends: '0'
+          description: 'Нарушение температурного режима'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Status
+            - tag: Application
+              value: Temperature
+          triggers:
+            - uuid: 321d65d0ae844f5fa6e158d707ad70e2
+              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureHigh)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureHigh)=0'
+              name: 'Alarm: High Temperature'
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: d463966a9a36416b9970807879121685
+          name: 'Alarm: Low Temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.2.4.0
+          key: upsAlarmEnvSensorTemperatureLow
+          history: 30d
+          trends: '0'
+          description: 'Нарушение температурного режима'
+          valuemap:
+            name: 'INMATICS-MIB::alarmStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Status
+            - tag: Application
+              value: Temperature
+          triggers:
+            - uuid: 3b942c94f6b84fb78a89b20a5667dbc4
+              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureLow)=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureLow)=0'
+              name: 'Alarm: Low Temperature'
+              priority: WARNING
+              manual_close: 'YES'
+        - uuid: 8fb19d6bb64a4209862e036d24e243f1
+          name: 'Battery Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.6.0
+          key: upsBatteryCurrent
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          description: 'Сила тока на батареях'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Battery
+        - uuid: 1b34c0dfa4de4b71b37e2d17a0ea4101
+          name: 'Battery Status'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.1.0
+          key: upsBatteryStatus
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'UPS-MIB::upsBatteryStatus'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Battery
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: a30328142bac49409d76df537b56d569
+              expression: 'last(/Zaryad Sfera/upsBatteryStatus)=4'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+              name: 'Battery is Depleted'
+              priority: DISASTER
+              manual_close: 'YES'
+            - uuid: bc39f10f7d3f49acb608336bc3d0453d
+              expression: 'last(/Zaryad Sfera/upsBatteryStatus)=3'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+              name: 'Battery is Low'
+              priority: HIGH
+              manual_close: 'YES'
+              dependencies:
+                - name: 'Battery is Depleted'
+                  expression: 'last(/Zaryad Sfera/upsBatteryStatus)=4'
+                  recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+        - uuid: 98908dff95ae4844a5c406d3679d4b69
+          name: 'Battery Temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.7.0
+          key: upsBatteryTemperature
+          delay: 5m
+          history: 30d
+          trends: 90d
+          units: °C
+          tags:
+            - tag: Application
+              value: Battery
+            - tag: Application
+              value: Temperature
+        - uuid: f42375bb199648c386da228412838a1a
+          name: 'Battery Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.5.0
+          key: upsBatteryVoltage
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: V
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Battery
+        - uuid: 667ebabfb76245db9f8cb70f0e2c7b1f
+          name: 'Environment Humidity'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.2.2.1.3.1
+          key: upsEnvSensorHumidity
+          delay: 5m
+          history: 30d
+          trends: 90d
+          units: '%'
+          tags:
+            - tag: Application
+              value: General
+            - tag: Application
+              value: Temperature
+        - uuid: ca9979cc5fe04a5ba7c7658e87b3d945
+          name: 'Environment Temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.54661.1.1.1.2.2.1.2.1
+          key: upsEnvSensorTemperature
+          delay: 5m
+          history: 30d
+          trends: 90d
+          units: °C
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.01'
+          tags:
+            - tag: Application
+              value: General
+            - tag: Application
+              value: Temperature
+        - uuid: 7c8b4e94e5844c898043547db7b83717
+          name: 'Battery Capacity'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.4.0
+          key: upsEstimatedChargeRemaining
+          delay: 5m
+          history: 30d
+          trends: 90d
+          units: '%'
+          tags:
+            - tag: Application
+              value: Battery
+        - uuid: 3e56c30fc6e944bbadb90b2a15bddf22
+          name: 'Battery Remaining Time'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.2.3.0
+          key: upsEstimatedMinutesRemaining
+          history: 30d
+          trends: '0'
+          units: minute
+          tags:
+            - tag: Application
+              value: Battery
+            - tag: Application
+              value: Status
+        - uuid: dacdffae9f274284a64f8e5d74347f8e
+          name: 'UPS Firmware'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.1.4.0
+          key: upsIdentAgentSoftwareVersion
+          delay: 8h
+          history: 2w
+          value_type: CHAR
+          trends: '0'
+          tags:
+            - tag: Application
+              value: General
+        - uuid: 6b6a8edd20534222a6759cb6223f4aeb
+          name: 'UPS Model'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.1.2.0
+          key: upsIdentModel
+          delay: 8h
+          history: 2w
+          value_type: CHAR
+          trends: '0'
+          tags:
+            - tag: Application
+              value: General
+        - uuid: 170ff65dff3e47f79479e6c6f03011e4
+          name: 'Input Phase 1 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.4.1
+          key: upsInputCurrent.1
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: 28b3dac25f2544e393e38849b3288d83
+          name: 'Input Phase 2 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.4.2
+          key: upsInputCurrent.2
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: 12385327fded456c96d4e6feaa4d5bbf
+          name: 'Input Phase 3 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.4.3
+          key: upsInputCurrent.3
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: 6a163afa68f64f25a4e022cd13d74fe8
+          name: 'Input Phase 1 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.3.1
+          key: upsInputVoltage.1
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: b9ac8331d42244f5bdbc796323ea54b6
+          name: 'Input Phase 2 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.3.2
+          key: upsInputVoltage.2
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: f08207ef16d0445e96adf80e2a841b09
+          name: 'Input Phase 3 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.3.3.1.3.3
+          key: upsInputVoltage.3
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Input
+        - uuid: 4044b06ddc514c5aa1d8b761f2439562
+          name: 'Output Phase 1 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.3.1
+          key: upsOutputCurrent.1
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 825585a7fb114bb2a1604682570f9393
+          name: 'Output Phase 2 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.3.2
+          key: upsOutputCurrent.2
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 882e81ce10c540f99f402bbacae5b324
+          name: 'Output Phase 3 Current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.3.3
+          key: upsOutputCurrent.3
+          history: 30d
+          value_type: FLOAT
+          trends: 90d
+          units: A
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 6367661d55ee4a759fcecfd76bd6ed81
+          name: 'Output Phase 1 Load'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.5.1
+          key: upsOutputLoad.1
+          history: 30d
+          trends: 90d
+          units: '%'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 32a0e46c55b1434abb6d3d4d7e872f14
+          name: 'Output Phase 2 Load'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.5.2
+          key: upsOutputLoad.2
+          history: 30d
+          trends: 90d
+          units: '%'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 7e87649a250c4667aeddac718c63aee9
+          name: 'Output Phase 3 Load'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.5.3
+          key: upsOutputLoad.3
+          history: 30d
+          trends: 90d
+          units: '%'
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 1c5f4014c9db4ef89a24c81f27a09216
+          name: 'Output Source'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.1.0
+          key: upsOutputSource
+          history: 30d
+          trends: '0'
+          valuemap:
+            name: 'UPS-MIB::upsOutputSource'
+          preprocessing:
+            - type: DISCARD_UNCHANGED_HEARTBEAT
+              parameters:
+                - 4h
+          tags:
+            - tag: Application
+              value: Output
+            - tag: Application
+              value: Status
+          triggers:
+            - uuid: 9d3818b189104e93a6322e6a3294dc4a
+              expression: 'last(/Zaryad Sfera/upsOutputSource)=5'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/upsOutputSource)=3'
+              name: 'UPS is on Battery'
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: ae8166a75cfe4ff0909d5a6f77b47e34
+          name: 'Output Phase 1 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.2.1
+          key: upsOutputVoltage.1
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 98d1b7db1d4048f59f6de95c6b8ea78f
+          name: 'Output Phase 2 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.2.2
+          key: upsOutputVoltage.2
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Output
+        - uuid: 9764b00c53d24a2fb4d5eeb4289e14ea
+          name: 'Output Phase 3 Voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.2.1.33.1.4.4.1.2.3
+          key: upsOutputVoltage.3
+          history: 30d
+          trends: 90d
+          units: V
+          tags:
+            - tag: Application
+              value: Output
+      discovery_rules:
+        - uuid: 7403d81b1eb14b9d9020385f9b5cd902
+          name: 'Battery Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#STRING},1.3.6.1.4.1.54661.1.1.1.5.2.1.1.3,{#SERIAL},1.3.6.1.4.1.54661.1.1.1.5.2.2.3.1.1.2]'
+          key: battery.discovery
+          delay: 12h
+          description: 'Discovery of all of the batteries in all of the strings'
+          item_prototypes:
+            - uuid: b2827635170d444a8b9d0f610fd2fbc8
+              name: 'Battery {#SNMPINDEX} State'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRINGINDEX}.3.1.1.14.{#BATTERY}'
+              key: 'pulseBatteryCommonState[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'INMATICS-MIB::pulseCommonState'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: 'String {#STRING}'
+            - uuid: fc524a5ac0f5468dbbfa961243e9ec5a
+              name: 'Battery {#SNMPINDEX} Resistance'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRINGINDEX}.3.1.1.5.{#BATTERY}'
+              key: 'pulseBatteryResistance[{#SNMPINDEX}]'
+              delay: 5m
+              history: 7d
+              value_type: FLOAT
+              trends: 30d
+              units: mkOm
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#STRING}'
+            - uuid: 05b005a8c999492594c6878690eb1dbf
+              name: 'Battery {#SNMPINDEX} SoC'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRINGINDEX}.3.1.1.6.{#BATTERY}'
+              key: 'pulseBatterySOC[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              units: '%'
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#STRING}'
+            - uuid: d0eeab46b90a49d6a32185f35d9dd41f
+              name: 'Battery {#SNMPINDEX} Temperature'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRINGINDEX}.3.1.1.4.{#BATTERY}'
+              key: 'pulseBatteryTemperature[{#SNMPINDEX}]'
+              delay: 10m
+              history: 7d
+              value_type: FLOAT
+              trends: 30d
+              units: °C
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#STRING}'
+            - uuid: ca0387c9e56c4dd99a90fa33d7a840dc
+              name: 'Battery {#SNMPINDEX} Voltage'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRINGINDEX}.3.1.1.3.{#BATTERY}'
+              key: 'pulseBatteryVoltage[{#SNMPINDEX}]'
+              delay: 5m
+              history: 7d
+              value_type: FLOAT
+              trends: 30d
+              units: V
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.01'
+              tags:
+                - tag: Application
+                  value: 'String {#STRING}'
+          trigger_prototypes:
+            - uuid: e8ac188fc09a49b4b7d6998c58597898
+              expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+              name: 'Battery {#SNMPINDEX}: error'
+              opdata: 'SoC: {ITEM.LASTVALUE2}%'
+              priority: AVERAGE
+              manual_close: 'YES'
+            - uuid: 9fef4ae186814a39aaeafade171920b2
+              expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=2 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+              name: 'Battery {#SNMPINDEX}: warning'
+              opdata: 'SoC: {ITEM.LASTVALUE2}%'
+              priority: WARNING
+              manual_close: 'YES'
+              dependencies:
+                - name: 'Battery {#SNMPINDEX}: error'
+                  expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
+                  recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - |
+                  var inArray = JSON.parse(value);
+                  var outArray = [];
+                  
+                  var lines = 0;
+                  var maxIndex = 0;
+                  
+                  inArray.forEach(function(item) {
+                    var snmpIndex = item["{#SNMPINDEX}"];
+                    if (snmpIndex === "0") {
+                      // это нулевой элемент, содержит количество линий
+                      lines = parseInt(item["{#STRING}"], 10);
+                    } else {
+                      // остальные элементы содержат серийные номера, по их индексу определяем количество батарей в линии
+                      var idx = parseInt(snmpIndex, 10);
+                      if (idx > maxIndex) {
+                        maxIndex = idx;
+                      }
+                    }
+                  });
+                  
+                  var batteriesPerLine = maxIndex;
+                  
+                  // Генерируем итоговые элементы
+                  for (var i = 1; i <= lines; i++) {
+                    for (var j = 1; j <= batteriesPerLine; j++) {
+                      var obj = {};
+                      obj["{#SNMPINDEX}"] = i + "." + j;
+                      obj["{#STRINGINDEX}"] = (i + 1).toString();
+                      obj["{#STRING}"] = i.toString();
+                      obj["{#BATTERY}"] = j.toString();
+                      outArray.push(obj);
+                    }
+                  }
+                  
+                  return JSON.stringify(outArray);
+        - uuid: 9e2267dbf46245d8a9d394cd54145672
+          name: 'String Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#STRING},1.3.6.1.4.1.54661.1.1.1.5.2.1.2.3.1.2]'
+          key: string.discovery
+          delay: 2h
+          description: 'Discovery of strings common values'
+          item_prototypes:
+            - uuid: 08db44755aa94c6697c1f0836c5bb7ec
+              name: 'String {#SNMPINDEX} Controller State'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.1.2.4.1.2.{#SNMPINDEX}'
+              key: 'pulseControllerState[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              description: 'Состояние контроллера'
+              valuemap:
+                name: 'INMATICS-MIB::pulseCommonState'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: Status
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+              trigger_prototypes:
+                - uuid: 4096c85412bc4d62bfa39bc34797b07c
+                  expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=3'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: Controller error'
+                  priority: HIGH
+                  manual_close: 'YES'
+                - uuid: d819af55920a40888ca5ff266e99cae7
+                  expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=2'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: Controller warning'
+                  priority: WARNING
+                  manual_close: 'YES'
+                  dependencies:
+                    - name: 'String {#SNMPINDEX}: Controller error'
+                      expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=3'
+                      recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+            - uuid: 4e3d269eb35c4a9f8c07f41d65721ee9
+              name: 'String {#SNMPINDEX} Charge State'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.1.5.0'
+              key: 'pulseSChargeProcessState[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'INMATICS-MIB::pulseChargeProcessState'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: Status
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+            - uuid: b76afcc59974404a8226652c5d223171
+              name: 'String {#SNMPINDEX} Current'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.1.4.0'
+              key: 'pulseSCurrent[{#SNMPINDEX}]'
+              history: 30d
+              value_type: FLOAT
+              trends: 90d
+              units: A
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+            - uuid: 01e1027905e244139f8e33a920dd991d
+              name: 'String {#SNMPINDEX} SOC'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.1.6.0'
+              key: 'pulseSSoc[{#SNMPINDEX}]'
+              history: 30d
+              value_type: FLOAT
+              trends: 90d
+              units: '%'
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+            - uuid: 58d82f05e90b417781deff1a85ee12df
+              name: 'String {#SNMPINDEX} Temperature Disbalance'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.2.4.0'
+              key: 'pulseSTemperatureDisbalance[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'INMATICS-MIB::pulseStringVoltageDisbalance'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: Status
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+              trigger_prototypes:
+                - uuid: 88d5832d9d524cbf8f796e828f392509
+                  expression: 'last(/Zaryad Sfera/pulseSTemperatureDisbalance[{#SNMPINDEX}])=2'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseSTemperatureDisbalance[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: Temperature Disbalance'
+                  priority: WARNING
+                  manual_close: 'YES'
+            - uuid: c1c2b1107303468491cb2a94c22f485e
+              name: 'String {#SNMPINDEX} State'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.1.2.3.1.2.{#SNMPINDEX}'
+              key: 'pulseStringState[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              description: 'Состояние линии АКБ'
+              valuemap:
+                name: 'INMATICS-MIB::pulseCommonState'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: Status
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+              trigger_prototypes:
+                - uuid: 4fb4fd9ba27741e79af992245f67d8a4
+                  expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=3'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: error'
+                  priority: HIGH
+                  manual_close: 'YES'
+                - uuid: 8ec81d73eea24628ae9e4351528dabe0
+                  expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=2'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: warning'
+                  priority: WARNING
+                  manual_close: 'YES'
+                  dependencies:
+                    - name: 'String {#SNMPINDEX}: error'
+                      expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=3'
+                      recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+            - uuid: c31c23e6de9e4fdeaada39f85f39f4fe
+              name: 'String {#SNMPINDEX} Voltage Disbalance'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.2.3.0'
+              key: 'pulseSVoltageDisbalance[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'INMATICS-MIB::pulseStringVoltageDisbalance'
+              preprocessing:
+                - type: DISCARD_UNCHANGED_HEARTBEAT
+                  parameters:
+                    - 4h
+              tags:
+                - tag: Application
+                  value: Status
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+              trigger_prototypes:
+                - uuid: 3849d3a2707e4c92bc7eef71e796d9f0
+                  expression: 'last(/Zaryad Sfera/pulseSVoltageDisbalance[{#SNMPINDEX}])=2'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/Zaryad Sfera/pulseSVoltageDisbalance[{#SNMPINDEX}])=1'
+                  name: 'String {#SNMPINDEX}: Voltage Disbalance'
+                  priority: AVERAGE
+                  manual_close: 'YES'
+            - uuid: 7a087db125da43e3915337325eb4caf0
+              name: 'String {#SNMPINDEX} Voltage'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.54661.1.1.1.5.2.{#STRING}.1.3.0'
+              key: 'pulseSVoltage[{#SNMPINDEX}]'
+              history: 30d
+              value_type: FLOAT
+              trends: 90d
+              units: V
+              preprocessing:
+                - type: MULTIPLIER
+                  parameters:
+                    - '0.1'
+              tags:
+                - tag: Application
+                  value: 'String {#SNMPINDEX}'
+          graph_prototypes:
+            - uuid: d6c56e7c4e2248269e386ecec2ec3848
+              name: 'String {#SNMPINDEX} Current'
+              graph_items:
+                - color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Zaryad Sfera'
+                    key: 'pulseSCurrent[{#SNMPINDEX}]'
+            - uuid: 41849de237a64db1a58a65ba25dcb486
+              name: 'String {#SNMPINDEX} SoC'
+              ymin_type_1: FIXED
+              ymax_type_1: FIXED
+              graph_items:
+                - color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Zaryad Sfera'
+                    key: 'pulseSSoc[{#SNMPINDEX}]'
+            - uuid: 1ca417117ca54a0d974f150e7c613a60
+              name: 'String {#SNMPINDEX} Voltage'
+              ymin_type_1: FIXED
+              graph_items:
+                - color: 199C0D
+                  calc_fnc: ALL
+                  item:
+                    host: 'Zaryad Sfera'
+                    key: 'pulseSVoltage[{#SNMPINDEX}]'
+          preprocessing:
+            - type: JAVASCRIPT
+              parameters:
+                - |
+                  var inArray = JSON.parse(value);
+                  var outArray = [];
+                  inArray.forEach(function(item, i, arr) {
+                    item['{#STRING}'] = parseInt(item['{#SNMPINDEX}']) + 1;
+                    outArray.push(item)
+                  });
+                  return JSON.stringify(outArray);
+      tags:
+        - tag: class
+          value: power
+      dashboards:
+        - uuid: b118ab235fea4b1cac2a9550d61a9eb4
+          name: 'Zaryad Sfera'
+          pages:
+            - name: General
+              display_period: '3600'
+              widgets:
+                - type: graph
+                  width: '12'
+                  height: '6'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'Input Voltage & Current'
+                - type: graph
+                  'y': '6'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'Battery Capacity'
+                - type: graph
+                  'y': '11'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'Temperature & Humidity'
+                - type: graph
+                  x: '12'
+                  width: '12'
+                  height: '6'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'Output Voltage & Current'
+                - type: graph
+                  x: '12'
+                  'y': '6'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'Output Load'
+            - name: Strings
+              display_period: '3600'
+              widgets:
+                - type: graphprototype
+                  name: 'Strings Voltage'
+                  width: '24'
+                  height: '4'
+                  fields:
+                    - type: INTEGER
+                      name: columns
+                      value: '4'
+                    - type: GRAPH_PROTOTYPE
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'String {#SNMPINDEX} Voltage'
+                - type: graphprototype
+                  name: 'Strings Current'
+                  'y': '4'
+                  width: '24'
+                  height: '4'
+                  fields:
+                    - type: INTEGER
+                      name: columns
+                      value: '4'
+                    - type: GRAPH_PROTOTYPE
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'String {#SNMPINDEX} Current'
+                - type: graphprototype
+                  name: 'Strings SoC'
+                  'y': '8'
+                  width: '24'
+                  height: '4'
+                  fields:
+                    - type: INTEGER
+                      name: columns
+                      value: '4'
+                    - type: GRAPH_PROTOTYPE
+                      name: graphid
+                      value:
+                        host: 'Zaryad Sfera'
+                        name: 'String {#SNMPINDEX} SoC'
+      valuemaps:
+        - uuid: 2ef46bab046042c1bd8fa72d86ad032a
+          name: 'INMATICS-MIB::alarmStatus'
+          mappings:
+            - value: '1'
+              newvalue: alarm
+            - value: '0'
+              newvalue: normal
+            - value: '2'
+              newvalue: 'not supported'
+        - uuid: c3884528349c427db7d9a8443839b7ec
+          name: 'INMATICS-MIB::pulseChargeProcessState'
+          mappings:
+            - value: '0'
+              newvalue: 'no data'
+            - value: '1'
+              newvalue: charge
+            - value: '2'
+              newvalue: 'floating charge'
+            - value: '3'
+              newvalue: 'no charge'
+            - value: '4'
+              newvalue: discharged
+            - value: '5'
+              newvalue: 'indeterminate state'
+        - uuid: 381d9e51f50d4571b67978af20fbdb87
+          name: 'INMATICS-MIB::pulseCommonState'
+          mappings:
+            - value: '0'
+              newvalue: 'no data'
+            - value: '1'
+              newvalue: normal
+            - value: '2'
+              newvalue: warning
+            - value: '3'
+              newvalue: error
+        - uuid: e257f3067e314734a953e23da041697d
+          name: 'INMATICS-MIB::pulseStringCurrentDisbalance'
+          mappings:
+            - value: '0'
+              newvalue: 'no data'
+            - value: '1'
+              newvalue: normal
+            - value: '2'
+              newvalue: 'high charge'
+            - value: '3'
+              newvalue: 'high discharge'
+        - uuid: ce0f346b2c704e029f4c273e8f407d8b
+          name: 'INMATICS-MIB::pulseStringVoltageDisbalance'
+          mappings:
+            - value: '0'
+              newvalue: 'no data'
+            - value: '1'
+              newvalue: normal
+            - value: '2'
+              newvalue: high
+        - uuid: 8d0079aca20f481ebead0a9ccc74d9fa
+          name: 'UPS-MIB::upsBatteryStatus'
+          mappings:
+            - value: '1'
+              newvalue: unknown
+            - value: '2'
+              newvalue: 'battery normal'
+            - value: '3'
+              newvalue: 'battery low'
+            - value: '4'
+              newvalue: 'battery depleted'
+        - uuid: 376cfb16467840d1bb092d46c4679fd2
+          name: 'UPS-MIB::upsOutputSource'
+          mappings:
+            - value: '1'
+              newvalue: other
+            - value: '2'
+              newvalue: none
+            - value: '3'
+              newvalue: normal
+            - value: '4'
+              newvalue: bypass
+            - value: '5'
+              newvalue: battery
+            - value: '6'
+              newvalue: booster
+            - value: '7'
+              newvalue: reduced
+  graphs:
+    - uuid: a66feebff15f408ab08eae3bc05abd0f
+      name: 'Battery Capacity'
+      ymin_type_1: FIXED
+      ymax_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsEstimatedChargeRemaining
+    - uuid: 812076de5e2f45d1a72543dac34c38e6
+      name: 'Input Voltage & Current'
+      ymin_type_1: FIXED
+      graph_items:
+        - color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputCurrent.1
+        - sortorder: '1'
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputVoltage.1
+        - sortorder: '2'
+          color: 2774A4
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputCurrent.2
+        - sortorder: '3'
+          color: F7941D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputVoltage.2
+        - sortorder: '4'
+          color: FC6EA3
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputCurrent.3
+        - sortorder: '5'
+          color: 6C59DC
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsInputVoltage.3
+    - uuid: 908062b75cb34b2a873554246d87bd4b
+      name: 'Output Load'
+      yaxismax: '200'
+      ymin_type_1: FIXED
+      ymax_type_1: FIXED
+      graph_items:
+        - color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputLoad.1
+        - sortorder: '1'
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputLoad.2
+        - sortorder: '2'
+          color: 2774A4
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputLoad.3
+    - uuid: aa1997dfaefe4b03ab9440c3c348afbc
+      name: 'Output Voltage & Current'
+      ymin_type_1: FIXED
+      graph_items:
+        - color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputCurrent.1
+        - sortorder: '1'
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputVoltage.1
+        - sortorder: '2'
+          color: 2774A4
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputCurrent.2
+        - sortorder: '3'
+          color: F7941D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputVoltage.2
+        - sortorder: '4'
+          color: FC6EA3
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputCurrent.3
+        - sortorder: '5'
+          color: 6C59DC
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsOutputVoltage.3
+    - uuid: 4a5a241202e14a8bbb9e934c07ab91b4
+      name: 'Temperature & Humidity'
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 199C0D
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsBatteryTemperature
+        - sortorder: '1'
+          drawtype: GRADIENT_LINE
+          color: 2774A4
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsEnvSensorTemperature
+        - sortorder: '2'
+          drawtype: BOLD_LINE
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Zaryad Sfera'
+            key: upsEnvSensorHumidity
