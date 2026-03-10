@@ -1,10 +1,15 @@
 # Zabbix Zaryad Sfera Template
-SNMP Template for Zaryd Sfera Series of UPS  
+SNMP v2 Template for Zaryd Sfera Series of UPS  
 https://zarad-ups.ru/
 
 Was tested on Zaryad Sfera M33-600, but must be usable on any Zaryad devices with similar SNMP module
 
 Based on UPS-MIB.mib and INMATICS-MIB.mib
+
+## Macros used
+|Name|Description|Default|Type|
+|----|-----------|-------|----|
+|{$SNMP_COMMUNITY}|<p>-</p>|``|Text macro|
 
 ## Discovery rules
 |Name|Description|Type|Key and additional info|
