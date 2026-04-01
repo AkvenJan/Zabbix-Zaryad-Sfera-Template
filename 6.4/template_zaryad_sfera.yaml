@@ -5,12 +5,11 @@ zabbix_export:
       name: Templates/Power
   templates:
     - uuid: 5160f960e022427d9074429142115c14
-      template: 'Zaryad Sfera'
-      name: 'Zaryad Sfera'
+      template: 'Zaryad Sfera UPS'
+      name: 'Zaryad Sfera UPS'
       description: |
-        Template for:
+        Template for Zaryad (Zarad) UPS. Tested on:
          Zaryad Sfera M33-600
-        and possibly for any Zaryad devices
         
         MIBs:
          UPS-MIB
@@ -40,9 +39,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: 354e5e62ce694546bec133ead9c28a78
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmBypassBad)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmBypassBad)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmBypassBad)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmBypassBad)=0'
               name: 'Alarm: Bad Bypass'
               priority: AVERAGE
               manual_close: 'YES'
@@ -64,9 +63,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: cc2bd1bffe584ce2b111aa614c532b83
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmGeneralFault)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmGeneralFault)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmGeneralFault)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmGeneralFault)=0'
               name: 'Alarm: General Fault'
               priority: AVERAGE
               manual_close: 'YES'
@@ -91,9 +90,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: a78522e3656345f29638cf3005368a90
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmInputBad)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmInputBad)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmInputBad)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmInputBad)=0'
               name: 'Alarm: Bad Input'
               priority: AVERAGE
               manual_close: 'YES'
@@ -118,9 +117,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: 5407e90061874c19913d1b48f3dffaa0
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmLowBattery)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmLowBattery)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmLowBattery)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmLowBattery)=0'
               name: 'Alarm: Low Battery'
               status: DISABLED
               priority: HIGH
@@ -184,9 +183,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: c7cfeb48d5464a1782b9f8fdbd1d2970
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmOutputOverload)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmOutputOverload)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmOutputOverload)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmOutputOverload)=0'
               name: 'Alarm: Output overload'
               priority: HIGH
               manual_close: 'YES'
@@ -211,9 +210,9 @@ zabbix_export:
               value: Temperature
           triggers:
             - uuid: 1c7064c29880463ca4dfaab18a06f650
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmTempBad)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmTempBad)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmTempBad)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmTempBad)=0'
               name: 'Alarm: Bad Temperature'
               priority: AVERAGE
               manual_close: 'YES'
@@ -237,9 +236,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: 73865434403f441a95f50e86ac23ef0c
-              expression: 'last(/Zaryad Sfera/generalRfc1628AlarmUpsOutputOff)=1'
+              expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmUpsOutputOff)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/generalRfc1628AlarmUpsOutputOff)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/generalRfc1628AlarmUpsOutputOff)=0'
               name: 'Alarm: Output is off'
               priority: HIGH
               manual_close: 'YES'
@@ -388,9 +387,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: fc33932d512b4f8694e165bed8f3139c
-              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorHumidityHigh)=1'
+              expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorHumidityHigh)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorHumidityHigh)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorHumidityHigh)=0'
               name: 'Alarm: High Humidity'
               priority: AVERAGE
               manual_close: 'YES'
@@ -415,9 +414,9 @@ zabbix_export:
               value: Temperature
           triggers:
             - uuid: 321d65d0ae844f5fa6e158d707ad70e2
-              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureHigh)=1'
+              expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorTemperatureHigh)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureHigh)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorTemperatureHigh)=0'
               name: 'Alarm: High Temperature'
               priority: HIGH
               manual_close: 'YES'
@@ -442,9 +441,9 @@ zabbix_export:
               value: Temperature
           triggers:
             - uuid: 3b942c94f6b84fb78a89b20a5667dbc4
-              expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureLow)=1'
+              expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorTemperatureLow)=1'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsAlarmEnvSensorTemperatureLow)=0'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsAlarmEnvSensorTemperatureLow)=0'
               name: 'Alarm: Low Temperature'
               priority: WARNING
               manual_close: 'YES'
@@ -485,23 +484,23 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: a30328142bac49409d76df537b56d569
-              expression: 'last(/Zaryad Sfera/upsBatteryStatus)=4'
+              expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=4'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=2'
               name: 'Battery is Depleted'
               priority: DISASTER
               manual_close: 'YES'
             - uuid: bc39f10f7d3f49acb608336bc3d0453d
-              expression: 'last(/Zaryad Sfera/upsBatteryStatus)=3'
+              expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=3'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=2'
               name: 'Battery is Low'
               priority: HIGH
               manual_close: 'YES'
               dependencies:
                 - name: 'Battery is Depleted'
-                  expression: 'last(/Zaryad Sfera/upsBatteryStatus)=4'
-                  recovery_expression: 'last(/Zaryad Sfera/upsBatteryStatus)=2'
+                  expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=4'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/upsBatteryStatus)=2'
         - uuid: 98908dff95ae4844a5c406d3679d4b69
           name: 'Battery Temperature'
           type: SNMP_AGENT
@@ -598,6 +597,7 @@ zabbix_export:
           history: 2w
           value_type: CHAR
           trends: '0'
+          inventory_link: OS
           tags:
             - tag: Application
               value: General
@@ -610,6 +610,7 @@ zabbix_export:
           history: 2w
           value_type: CHAR
           trends: '0'
+          inventory_link: MODEL
           tags:
             - tag: Application
               value: General
@@ -795,9 +796,9 @@ zabbix_export:
               value: Status
           triggers:
             - uuid: 9d3818b189104e93a6322e6a3294dc4a
-              expression: 'last(/Zaryad Sfera/upsOutputSource)=5'
+              expression: 'last(/Zaryad Sfera UPS/upsOutputSource)=5'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/upsOutputSource)=3'
+              recovery_expression: 'last(/Zaryad Sfera UPS/upsOutputSource)=3'
               name: 'UPS is on Battery'
               priority: HIGH
               manual_close: 'YES'
@@ -929,25 +930,25 @@ zabbix_export:
                   value: 'String {#STRING}'
           trigger_prototypes:
             - uuid: e8ac188fc09a49b4b7d6998c58597898
-              expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
+              expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera UPS/pulseBatterySOC[{#SNMPINDEX}])>=0'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+              recovery_expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=1'
               name: 'Battery {#SNMPINDEX}: error'
               opdata: 'SoC: {ITEM.LASTVALUE2}%'
               priority: AVERAGE
               manual_close: 'YES'
             - uuid: 9fef4ae186814a39aaeafade171920b2
-              expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=2 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
+              expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=2 and last(/Zaryad Sfera UPS/pulseBatterySOC[{#SNMPINDEX}])>=0'
               recovery_mode: RECOVERY_EXPRESSION
-              recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+              recovery_expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=1'
               name: 'Battery {#SNMPINDEX}: warning'
               opdata: 'SoC: {ITEM.LASTVALUE2}%'
               priority: WARNING
               manual_close: 'YES'
               dependencies:
                 - name: 'Battery {#SNMPINDEX}: error'
-                  expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera/pulseBatterySOC[{#SNMPINDEX}])>=0'
-                  recovery_expression: 'last(/Zaryad Sfera/pulseBatteryCommonState[{#SNMPINDEX}])=1'
+                  expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=3 and last(/Zaryad Sfera UPS/pulseBatterySOC[{#SNMPINDEX}])>=0'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseBatteryCommonState[{#SNMPINDEX}])=1'
           preprocessing:
             - type: JAVASCRIPT
               parameters:
@@ -1016,23 +1017,23 @@ zabbix_export:
                   value: 'String {#SNMPINDEX}'
               trigger_prototypes:
                 - uuid: 4096c85412bc4d62bfa39bc34797b07c
-                  expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=3'
+                  expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=3'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: Controller error'
                   priority: HIGH
                   manual_close: 'YES'
                 - uuid: d819af55920a40888ca5ff266e99cae7
-                  expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=2'
+                  expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=2'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: Controller warning'
                   priority: WARNING
                   manual_close: 'YES'
                   dependencies:
                     - name: 'String {#SNMPINDEX}: Controller error'
-                      expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=3'
-                      recovery_expression: 'last(/Zaryad Sfera/pulseControllerState[{#SNMPINDEX}])=1'
+                      expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=3'
+                      recovery_expression: 'last(/Zaryad Sfera UPS/pulseControllerState[{#SNMPINDEX}])=1'
             - uuid: 4e3d269eb35c4a9f8c07f41d65721ee9
               name: 'String {#SNMPINDEX} Charge State'
               type: SNMP_AGENT
@@ -1103,9 +1104,9 @@ zabbix_export:
                   value: 'String {#SNMPINDEX}'
               trigger_prototypes:
                 - uuid: 88d5832d9d524cbf8f796e828f392509
-                  expression: 'last(/Zaryad Sfera/pulseSTemperatureDisbalance[{#SNMPINDEX}])=2'
+                  expression: 'last(/Zaryad Sfera UPS/pulseSTemperatureDisbalance[{#SNMPINDEX}])=2'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseSTemperatureDisbalance[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseSTemperatureDisbalance[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: Temperature Disbalance'
                   priority: WARNING
                   manual_close: 'YES'
@@ -1130,23 +1131,23 @@ zabbix_export:
                   value: 'String {#SNMPINDEX}'
               trigger_prototypes:
                 - uuid: 4fb4fd9ba27741e79af992245f67d8a4
-                  expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=3'
+                  expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=3'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: error'
                   priority: HIGH
                   manual_close: 'YES'
                 - uuid: 8ec81d73eea24628ae9e4351528dabe0
-                  expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=2'
+                  expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=2'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: warning'
                   priority: WARNING
                   manual_close: 'YES'
                   dependencies:
                     - name: 'String {#SNMPINDEX}: error'
-                      expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=3'
-                      recovery_expression: 'last(/Zaryad Sfera/pulseStringState[{#SNMPINDEX}])=1'
+                      expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=3'
+                      recovery_expression: 'last(/Zaryad Sfera UPS/pulseStringState[{#SNMPINDEX}])=1'
             - uuid: c31c23e6de9e4fdeaada39f85f39f4fe
               name: 'String {#SNMPINDEX} Voltage Disbalance'
               type: SNMP_AGENT
@@ -1167,9 +1168,9 @@ zabbix_export:
                   value: 'String {#SNMPINDEX}'
               trigger_prototypes:
                 - uuid: 3849d3a2707e4c92bc7eef71e796d9f0
-                  expression: 'last(/Zaryad Sfera/pulseSVoltageDisbalance[{#SNMPINDEX}])=2'
+                  expression: 'last(/Zaryad Sfera UPS/pulseSVoltageDisbalance[{#SNMPINDEX}])=2'
                   recovery_mode: RECOVERY_EXPRESSION
-                  recovery_expression: 'last(/Zaryad Sfera/pulseSVoltageDisbalance[{#SNMPINDEX}])=1'
+                  recovery_expression: 'last(/Zaryad Sfera UPS/pulseSVoltageDisbalance[{#SNMPINDEX}])=1'
                   name: 'String {#SNMPINDEX}: Voltage Disbalance'
                   priority: AVERAGE
                   manual_close: 'YES'
@@ -1196,7 +1197,7 @@ zabbix_export:
                 - color: 199C0D
                   calc_fnc: ALL
                   item:
-                    host: 'Zaryad Sfera'
+                    host: 'Zaryad Sfera UPS'
                     key: 'pulseSCurrent[{#SNMPINDEX}]'
             - uuid: 41849de237a64db1a58a65ba25dcb486
               name: 'String {#SNMPINDEX} SoC'
@@ -1206,7 +1207,7 @@ zabbix_export:
                 - color: 199C0D
                   calc_fnc: ALL
                   item:
-                    host: 'Zaryad Sfera'
+                    host: 'Zaryad Sfera UPS'
                     key: 'pulseSSoc[{#SNMPINDEX}]'
             - uuid: 1ca417117ca54a0d974f150e7c613a60
               name: 'String {#SNMPINDEX} Voltage'
@@ -1215,7 +1216,7 @@ zabbix_export:
                 - color: 199C0D
                   calc_fnc: ALL
                   item:
-                    host: 'Zaryad Sfera'
+                    host: 'Zaryad Sfera UPS'
                     key: 'pulseSVoltage[{#SNMPINDEX}]'
           preprocessing:
             - type: JAVASCRIPT
@@ -1245,7 +1246,7 @@ zabbix_export:
                     - type: GRAPH
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'Input Voltage & Current'
                 - type: graph
                   'y': '6'
@@ -1255,7 +1256,7 @@ zabbix_export:
                     - type: GRAPH
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'Battery Capacity'
                 - type: graph
                   'y': '11'
@@ -1265,7 +1266,7 @@ zabbix_export:
                     - type: GRAPH
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'Temperature & Humidity'
                 - type: graph
                   x: '12'
@@ -1275,7 +1276,7 @@ zabbix_export:
                     - type: GRAPH
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'Output Voltage & Current'
                 - type: graph
                   x: '12'
@@ -1286,7 +1287,7 @@ zabbix_export:
                     - type: GRAPH
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'Output Load'
             - name: Strings
               display_period: '3600'
@@ -1302,7 +1303,7 @@ zabbix_export:
                     - type: GRAPH_PROTOTYPE
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'String {#SNMPINDEX} Voltage'
                 - type: graphprototype
                   name: 'Strings Current'
@@ -1316,7 +1317,7 @@ zabbix_export:
                     - type: GRAPH_PROTOTYPE
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'String {#SNMPINDEX} Current'
                 - type: graphprototype
                   name: 'Strings SoC'
@@ -1330,7 +1331,7 @@ zabbix_export:
                     - type: GRAPH_PROTOTYPE
                       name: graphid
                       value:
-                        host: 'Zaryad Sfera'
+                        host: 'Zaryad Sfera UPS'
                         name: 'String {#SNMPINDEX} SoC'
       valuemaps:
         - uuid: 2ef46bab046042c1bd8fa72d86ad032a
@@ -1426,7 +1427,7 @@ zabbix_export:
           color: 199C0D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsEstimatedChargeRemaining
     - uuid: 812076de5e2f45d1a72543dac34c38e6
       name: 'Input Voltage & Current'
@@ -1435,37 +1436,37 @@ zabbix_export:
         - color: 199C0D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputCurrent.1
         - sortorder: '1'
           color: F63100
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputVoltage.1
         - sortorder: '2'
           color: 2774A4
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputCurrent.2
         - sortorder: '3'
           color: F7941D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputVoltage.2
         - sortorder: '4'
           color: FC6EA3
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputCurrent.3
         - sortorder: '5'
           color: 6C59DC
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsInputVoltage.3
     - uuid: 908062b75cb34b2a873554246d87bd4b
       name: 'Output Load'
@@ -1476,19 +1477,19 @@ zabbix_export:
         - color: 199C0D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputLoad.1
         - sortorder: '1'
           color: F63100
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputLoad.2
         - sortorder: '2'
           color: 2774A4
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputLoad.3
     - uuid: aa1997dfaefe4b03ab9440c3c348afbc
       name: 'Output Voltage & Current'
@@ -1497,37 +1498,37 @@ zabbix_export:
         - color: 199C0D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputCurrent.1
         - sortorder: '1'
           color: F63100
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputVoltage.1
         - sortorder: '2'
           color: 2774A4
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputCurrent.2
         - sortorder: '3'
           color: F7941D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputVoltage.2
         - sortorder: '4'
           color: FC6EA3
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputCurrent.3
         - sortorder: '5'
           color: 6C59DC
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsOutputVoltage.3
     - uuid: 4a5a241202e14a8bbb9e934c07ab91b4
       name: 'Temperature & Humidity'
@@ -1536,19 +1537,19 @@ zabbix_export:
           color: 199C0D
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsBatteryTemperature
         - sortorder: '1'
           drawtype: GRADIENT_LINE
           color: 2774A4
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsEnvSensorTemperature
         - sortorder: '2'
           drawtype: BOLD_LINE
           color: F63100
           calc_fnc: ALL
           item:
-            host: 'Zaryad Sfera'
+            host: 'Zaryad Sfera UPS'
             key: upsEnvSensorHumidity
