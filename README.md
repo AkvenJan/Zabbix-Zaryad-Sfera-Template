@@ -2,7 +2,10 @@
 SNMP v2 Template for Zaryd Sfera Series of UPS  
 https://zarad-ups.ru/
 
-Template was tested on Zaryad Sfera M33-600, but must be usable on any Zaryad devices with similar SNMP module
+Template was tested on 
+  Zaryad Sfera M33-600
+  Zaryad Sfera RT33-1000
+but must be usable on any Zaryad devices with similar SNMP module
 
 Based on UPS-MIB.mib and INMATICS-MIB.mib
 
