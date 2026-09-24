@@ -1,5 +1,5 @@
 # Zabbix Zaryad Sfera Template
-SNMP v2 Template for Zaryd Sfera Series of UPS  
+SNMP v2 Template for Zaryd vendor Sfera Series line of UPS  
 https://zarad-ups.ru/
 
 Template was tested on  
